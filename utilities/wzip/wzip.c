@@ -21,8 +21,8 @@ void printfile(FILE* fp) {
                 data_count[0]=count;
             }
             else{
-                data_count[0]=count-256;
-                data_count[1]=1;
+                data_count[0]=(int)(count%256);
+                data_count[1]=(int)(count/256);
             }
             data[0]=c_prev;
             fwrite(data_count,1, 4,stdout);

@@ -18,9 +18,9 @@ void readfile(FILE *fp){
         }
         else{
             count=c[0];
-            if(c[1]==1){
-                count+=256;
-            }
+            //if(c[1]==1){
+            count+=256*c[1];
+            //}
         }
         if(fread(c2, 1,1, fp) <=0)
         {
