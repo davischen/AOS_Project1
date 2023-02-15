@@ -7,15 +7,19 @@ void reverse_print(FILE* fp, FILE* fw) {
     size_t len = MAX_SIZE;
     char *line = malloc(sizeof(char) * MAX_SIZE);
     if( fgets(line, len, fp) == NULL )
+    {
+        //free(line);
         return;
+    }
     else {
         reverse_print(fp,fw);
         //printf("%s",line);
         fprintf(fw,"%s",line);
-        if (line)
-        {
-            free(line);
-        }
+        
+    }
+    if (line)
+    {
+        free(line);
     }
     return;
 }
@@ -26,49 +30,44 @@ int main( int argc, char **argv )
     if(argc>3)
     {
         fprintf(stderr,"usage: reverse <input> <output>\n");
-        return 1;
+        exit(1);
     }
     if(argc <=1)
     {
         reverse_print(stdin,stdout);
     }
     else{
-        char * exename_input_path = argv[1];
-        char * exename_output_path = argv[2];
-        fp = fopen(exename_input_path, "r");
+        fp = fopen(argv[1], "r");
         if (fp == NULL )
         {
-            fprintf(stderr,"reverse: cannot open file '%s'\n",exename_input_path);
-            return 1;
+            fprintf(stderr,"reverse: cannot open file '%s'\n",argv[1]);
+            exit(1);
         }
-        int result = strcmp(exename_input_path, exename_output_path);
-        //printf("%d\n",result);
-        if(result == 0)
+        if(strcmp(argv[1],argv[2])==0)
         {
             fprintf(stderr,"reverse: input and output file must differ\n");
-            return 1;
+            exit(1);
         }
+        //char * exename_input_path = argv[1];
+        //char * exename_output_path = argv[2];
+        
         if(argc == 2)
         {
             reverse_print(fp,stdout);
-            fclose(fp);
         }
         else{
-            char * exename_input = strrchr(exename_input_path, '/');
-            char * exename_output = strrchr(exename_output_path, '/');
-            result = strcmp(exename_input, exename_output);
-            if(result == 0)
+            if(strcmp(strrchr(argv[1], '/') ,strrchr(argv[2], '/'))==0)
             {
                 fprintf(stderr,"reverse: input and output file must differ\n");
-                return 1;
+                exit(1);
             }
-            fw = fopen(exename_output_path,"w");
+            fw = fopen(argv[2],"w");
             //if (ferror(fp) && ferror(fw)) {
             reverse_print(fp,fw);
-            fclose(fp);
+            
             fclose(fw);
         }
+        fclose(fp);
     }
-    
-    return 0;
+    exit(0);
 }

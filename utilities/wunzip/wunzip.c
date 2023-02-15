@@ -54,6 +54,7 @@ int main( int argc, char **argv )
         if (fp == NULL )
         {
             printf("wunzip: cannot open file\n");
+            fclose(fp);
             return 1;
         }
         readfile(fp);
