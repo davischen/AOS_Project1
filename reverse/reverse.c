@@ -4,10 +4,14 @@
 #include <string.h>
 #define MAX_SIZE 128
 void reverse_print(FILE* fp, FILE* fw) {
-    size_t len = MAX_SIZE;
+    size_t line_size = MAX_SIZE;
     char *line = malloc(sizeof(char) * MAX_SIZE);
-    if( fgets(line, len, fp) == NULL )
+    if( fgets(line, line_size, fp) == NULL )
     {
+        if (line)
+        {
+            free(line);
+        }
         //free(line);
         return;
     }

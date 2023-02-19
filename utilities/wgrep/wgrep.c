@@ -11,10 +11,10 @@ void printfile(FILE* fp,char * keyword) {
     //size_t len_total = sizeof(line_current);
     //char* line = malloc(sizeof(char) * MAX_SIZE);
     char *line = NULL;  //the line used to store the content from file
-    size_t len = 0;     //length of the line
+    size_t line_size = 0;     //length of the line
     ssize_t read; 
     //while (fgets(line_current, MAX_SIZE, fp) != NULL )
-    while ((read = getline(&line, &len, fp)) != -1)
+    while ((read = getline(&line, &line_size, fp)) != -1)
     {
         /*size_t len_used=strlen(line);
         size_t chunk_used=strlen(line_current);
@@ -33,11 +33,10 @@ void printfile(FILE* fp,char * keyword) {
         //    line[0]='\0';
         //}
     }
-    /*if (line)
+    if (line)
     {
         free(line);
-        line=NULL;
-    }*/
+    }
 }
 int main( int argc, char **argv )
 {
