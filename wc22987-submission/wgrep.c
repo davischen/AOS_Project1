@@ -7,10 +7,14 @@
 #define MAX_SIZE 1024
 
 void printfile(FILE* fp,char * keyword) {
-    char line_current[MAX_SIZE];
+    //char line_current[MAX_SIZE];
     //size_t len_total = sizeof(line_current);
     //char* line = malloc(sizeof(char) * MAX_SIZE);
-    while (fgets(line_current, MAX_SIZE, fp) != NULL )
+    char *line = NULL;  //the line used to store the content from file
+    size_t line_size = 0;     //length of the line
+    ssize_t read; 
+    //while (fgets(line_current, MAX_SIZE, fp) != NULL )
+    while ((read = getline(&line, &line_size, fp)) != -1)
     {
         /*size_t len_used=strlen(line);
         size_t chunk_used=strlen(line_current);
@@ -22,18 +26,17 @@ void printfile(FILE* fp,char * keyword) {
 
         if(line[len_used-1]=='\n')
         { */
-            if(strstr(line_current, keyword) != NULL)
+            if(strstr(line, keyword) != NULL)
             {
-                printf("%s",line_current);
+                printf("%s",line);
             }
         //    line[0]='\0';
         //}
     }
-    /*if (line)
+    if (line)
     {
         free(line);
-        line=NULL;
-    }*/
+    }
 }
 int main( int argc, char **argv )
 {

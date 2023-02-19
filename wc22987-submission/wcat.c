@@ -5,22 +5,23 @@
 #define MAX_SIZE 128
 
 void printfile(FILE* fp) {
-    char* input = malloc(sizeof(char) * MAX_SIZE);
+    //char* input = malloc(sizeof(char) * MAX_SIZE);
+    char buffer[MAX_SIZE];
     while(1)
     {
-        if( fgets(input, MAX_SIZE, fp) == NULL )
+        if( fgets(buffer, MAX_SIZE, fp) == NULL )
         {
           break;
         }
         else{
-          printf("%s",input);
+          printf("%s",buffer);
         }
           
     }
-    if(input)
+    /*if(buffer)
     {
-        free(input);
-    }
+        free(buffer);
+    }*/
 }
 int main( int argc, char **argv )
 {
