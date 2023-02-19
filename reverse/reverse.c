@@ -54,12 +54,8 @@ int main( int argc, char **argv )
         }
         //char * exename_input_path = argv[1];
         //char * exename_output_path = argv[2];
-        if(argc == 1)
-        {
-            //if (ferror(fp) && ferror(fw)) {
-            reverse_print(fp,stdout);
-        }
-        else if(argc == 2)
+        
+        if(argc == 2)
         {
             reverse_print(fp,stdout);
         }
