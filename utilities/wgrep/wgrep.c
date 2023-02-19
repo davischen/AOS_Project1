@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_SIZE 1024
+//#define MAX_SIZE 128
 
 void printfile(FILE* fp,char * keyword) {
     //char line_current[MAX_SIZE];
